@@ -2,7 +2,13 @@ import _ from 'lodash'
 
 import { CommandResponseType } from '@/types/command'
 
-import { type GroupAtMessageCreate } from 'amesu'
+import { getUser } from '@/hooks/useUser'
+
+import { auth } from '@/utils/permission'
+
+import type { UserTable } from '@/types/db'
+
+import type { GroupAtMessageCreate } from 'amesu'
 
 // {
 //     t: 'GROUP_AT_MESSAGE_CREATE',
@@ -28,16 +34,17 @@ export const splitCommand = (
     return { name, args }
 }
 
-export const useCommand = (
+export const useCommand = async (
     event: GroupAtMessageCreate
-): {
+): Promise<{
     status: CommandResponseType
     message?: string
     data?: {
         name: string
         args: string[]
+        user: UserTable
     }
-} => {
+}> => {
     const command = _.trim(event.content)
     if (command[0] !== '/')
         return {
@@ -46,13 +53,21 @@ export const useCommand = (
         }
     const { name, args } = splitCommand(command)
 
-    // TODO: check permission
+    const user = await getUser(event.author.member_openid)
+
+    if ((await auth('user.command', user.id)) === false) {
+        return {
+            status: CommandResponseType.PermissionDenied,
+            message: 'Permission denied'
+        }
+    }
 
     return {
         status: CommandResponseType.Success,
         data: {
             name,
-            args
+            args,
+            user
         }
     }
 }

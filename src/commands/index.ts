@@ -5,9 +5,8 @@ import logger, { cmdLogger } from '@/utils/log'
 import { CommandResponseType } from '@/types/command'
 
 // 监听群消息
-client.on('group.at.message.create', (e) => {
-    console.log(e)
-    const { status, data, message } = useCommand(e)
+client.on('group.at.message.create', async (e) => {
+    const { status, data, message } = await useCommand(e)
     if (status !== CommandResponseType.Success) {
         if (status === CommandResponseType.Fail) return
         e.reply({
@@ -24,5 +23,5 @@ client.on('group.at.message.create', (e) => {
     )
     console.log(data)
 
-    const { name, args } = data
+    const { name, args, user } = data
 })

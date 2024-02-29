@@ -6,6 +6,16 @@ import logger from './log'
 type LogLevel = 'OFF' | 'FATAL' | 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE' | 'ALL'
 
 const defaultConfig = {
+    dev: false,
+    sql: {
+        type: 'mysql',
+        sync: true,
+        host: 'localhost',
+        port: 3306,
+        username: 'root',
+        password: 'root',
+        database: 'chino'
+    },
     bot: {
         appid: '114514',
         token: '1919810',
