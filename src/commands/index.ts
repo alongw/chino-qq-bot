@@ -38,3 +38,11 @@ client.on('group.at.message.create', async (e) => {
         user
     })
 })
+
+client.on('group.add.robot', async (e) => {
+    await client.api.sendGroupMessage(e.group_openid, {
+        content:
+            'Hello, I am Chino, a QQ bot, you can use "/help" to get help. But before officially enabling me, I think should contact my owner first to open up the permissions of this qq group.',
+        msg_type: 0
+    })
+})
