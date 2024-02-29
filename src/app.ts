@@ -1,3 +1,4 @@
 import logger from '@/utils/log'
+import '@/commands/index'
 
-logger.info('Hello, World!')
+logger.info('Chino QQ Bot is running...')

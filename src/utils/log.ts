@@ -30,9 +30,9 @@ log4js.configure({
                 pattern: '%d %p %m'
             }
         },
-        apiOnlyFile: {
+        cmdOnlyFile: {
             type: 'file',
-            filename: 'logs/api.log',
+            filename: 'logs/cmd.log',
             layout: {
                 type: 'pattern',
                 pattern: '%d %p %m'
@@ -48,8 +48,8 @@ log4js.configure({
             appenders: ['dataBaseQueryLog'],
             level: 'all'
         },
-        api: {
-            appenders: ['currentConsole', 'apiOnlyFile', 'currentFile'],
+        cmd: {
+            appenders: ['currentConsole', 'cmdOnlyFile', 'currentFile'],
             level: 'all'
         }
     }
@@ -61,4 +61,4 @@ export default logger
 
 export const dbLogger = log4js.getLogger('db')
 
-export const apiLogger = log4js.getLogger('api')
+export const cmdLogger = log4js.getLogger('cmd')
