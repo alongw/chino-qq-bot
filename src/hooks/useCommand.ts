@@ -10,6 +10,8 @@ import type { UserTable } from '@/types/db'
 
 import type { GroupAtMessageCreate } from 'amesu'
 
+import type { Event as msgEvent } from '@/types/user'
+
 // {
 //     t: 'GROUP_AT_MESSAGE_CREATE',
 //     author: {
@@ -23,6 +25,8 @@ import type { GroupAtMessageCreate } from 'amesu'
 //     timestamp: '2024-03-01T01:59:47+08:00',
 //     reply: [Function (anonymous)]
 //   }
+
+export const commands = new Map<string, (args: string[], event: msgEvent) => void>()
 
 export const splitCommand = (
     command: string
