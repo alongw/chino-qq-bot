@@ -9,7 +9,8 @@ const defaultHelpMsg = `帮助菜单
 命令列表
 - /help -- 获取帮助菜单
 - /check-in -- 签到
-- /me -- 获取一条关于我的信息`
+- /me -- 获取一条关于我的信息
+- /motd <address> [bedrock port] -- 获取服务器状态`
 
 if (!getFile('help.txt')) {
     writeFile('help.txt', defaultHelpMsg)

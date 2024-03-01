@@ -47,5 +47,13 @@ export const defaultPermissions: Permission[] = [
         path: 'user.command.checkIn',
         parent: 102,
         desc: 'check-in 命令'
+    },
+    // motd 命令
+    {
+        pid: 10205,
+        name: 'motd',
+        path: 'user.command.motd',
+        parent: 102,
+        desc: 'motd 命令'
     }
 ]
