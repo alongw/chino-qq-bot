@@ -266,6 +266,7 @@ export const auth = async (permissionNode: string, uuid: string): Promise<boolea
             permissionCache.delete(`${uuid}-${permissionNode}`)
         }
     }
+    // 检查权限
 
     const group = await getUserGroupByUid(uuid)
     const result = await checkPermission(permissionNode, group)
