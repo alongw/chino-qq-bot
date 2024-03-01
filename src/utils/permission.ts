@@ -2,6 +2,8 @@
 import { GroupPermission, Permission, User } from '@/database/table'
 import logger from './log'
 
+import dayjs from 'dayjs'
+
 import { defaultPermissions } from '@/permission/permission'
 
 enum StatusCode {
@@ -9,6 +11,17 @@ enum StatusCode {
     OK = 200,
     InternalServerError = 500
 }
+
+const permissionCache: Map<
+    string,
+    {
+        allow: boolean
+        group: number
+        id: number
+        exp: number
+        msg: string
+    }
+> = new Map()
 
 const DEFAULT_PERMISSION_SEPARATOR = '.'
 
@@ -206,7 +219,7 @@ const checkPermission = async (
 
 const log = (uuid: string, result: Resolve, group: number) => {
     logger.info(
-        `[NYA-PERMISSION] 鉴权 - 用户 uuid ${uuid} (${group}用户组) 鉴权 ${JSON.stringify(
+        `[NYA-PERMISSION] 鉴权 - 用户 ${uuid} (${group}用户组) 鉴权 ${JSON.stringify(
             result.queue
         )} 队列 ${result.info?.result ? '通过' : '被拒绝'},原因:${
             result.info?.msg
@@ -228,8 +241,41 @@ export const usePermission = async (uuid: string) => {
 }
 
 export const auth = async (permissionNode: string, uuid: string): Promise<boolean> => {
+    // 检查缓存
+    if (permissionCache.has(`${uuid}-${permissionNode}`)) {
+        const cache = permissionCache.get(`${uuid}-${permissionNode}`)
+        if (cache?.exp > dayjs().valueOf()) {
+            log(
+                uuid,
+                {
+                    result: cache.allow,
+                    title: '缓存命中',
+                    code: StatusCode.OK,
+                    info: {
+                        result: cache.allow,
+                        msg: '缓存命中',
+                        id: cache.id
+                    },
+                    plance: cache.msg
+                },
+                cache.group
+            )
+
+            return cache.allow
+        } else {
+            permissionCache.delete(`${uuid}-${permissionNode}`)
+        }
+    }
+
     const group = await getUserGroupByUid(uuid)
     const result = await checkPermission(permissionNode, group)
+    permissionCache.set(`${uuid}-${permissionNode}`, {
+        allow: result.result,
+        group,
+        id: result.info?.id || -500,
+        exp: dayjs().add(1, 'hour').valueOf(),
+        msg: (result.info?.msg || '未知') + JSON.stringify(permissionNode)
+    })
     log(uuid, result, group)
     return result.result
 }
