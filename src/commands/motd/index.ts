@@ -2,11 +2,20 @@ import { useMotd } from './hooks/useMotd'
 
 import dayjs from 'dayjs'
 
+import { auth } from '@/utils/permission'
+
 import type { Event } from '@/types/user'
 
 let exp: number | undefined
 
 export default async (args: string[], event: Event) => {
+    if (!(await auth('user.command.motd', event.author.member_openid))) {
+        return event.reply({
+            msg_type: 0,
+            content: '命令执行失败：Permission denied'
+        })
+    }
+
     if (!args[0]) {
         return event.reply({
             msg_type: 0,
