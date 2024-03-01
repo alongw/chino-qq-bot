@@ -39,5 +39,13 @@ export const defaultPermissions: Permission[] = [
         path: 'user.command.help',
         parent: 102,
         desc: 'help 命令'
+    },
+    // check-in 命令
+    {
+        pid: 10204,
+        name: 'checkIn',
+        path: 'user.command.checkIn',
+        parent: 102,
+        desc: 'check-in 命令'
     }
 ]
