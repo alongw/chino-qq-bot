@@ -8,7 +8,7 @@ import { auth } from '@/utils/permission'
 
 import type { UserTable } from '@/types/db'
 
-import type { GroupAtMessageCreate } from 'amesu'
+import type { GroupAtMessageCreate, Client } from 'amesu'
 
 import type { Event as msgEvent } from '@/types/user'
 
@@ -26,7 +26,10 @@ import type { Event as msgEvent } from '@/types/user'
 //     reply: [Function (anonymous)]
 //   }
 
-export const commands = new Map<string, (args: string[], event: msgEvent) => void>()
+export const commands = new Map<
+    string,
+    (args: string[], event: msgEvent, Instantiate?: Client) => void
+>()
 
 export const splitCommand = (
     command: string

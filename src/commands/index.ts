@@ -5,7 +5,6 @@ import logger, { cmdLogger } from '@/utils/log'
 import { CommandResponseType } from '@/types/command'
 
 import './import'
-
 // 监听群消息
 client.on('group.at.message.create', async (e) => {
     const { status, data, message } = await useCommand(e)
@@ -33,10 +32,14 @@ client.on('group.at.message.create', async (e) => {
         })
     }
 
-    return commands.get(name)(args, {
-        ...e,
-        user
-    })
+    return commands.get(name)(
+        args,
+        {
+            ...e,
+            user
+        },
+        client
+    )
 })
 
 client.on('group.add.robot', async (e) => {
