@@ -6,6 +6,6 @@ import Me from './me'
 import Motd from './motd'
 
 commands.set('/help', Help)
-commands.set('/check-in', CheckIn)
+commands.set('/checkIn', CheckIn)
 commands.set('/me', Me)
 commands.set('/motd', Motd)
