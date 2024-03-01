@@ -2,8 +2,8 @@ import fse from 'fs-extra'
 import _ from 'lodash'
 
 const handlePath = (path: string) => {
-    // 去除首尾空格和斜杠
-    const newPath = _.trim(path, '/')
+    // 去除首尾空格和斜杠还有点
+    const newPath = _.trim(path, './')
     return newPath
 }
 
