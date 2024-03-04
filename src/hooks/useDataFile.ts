@@ -9,6 +9,8 @@ const handlePath = (path: string) => {
 
 export const useData = (command: string) => {
     command = handlePath(command)
+    // 判断 data 是否存在 不存在则创建
+    fse.pathExistsSync('./data') ? '' : fse.mkdirSync('./data')
 
     // 判断文件夹是否存在 不存在则创建
     fse.pathExistsSync(`./data/${command}`) ? '' : fse.mkdirSync(`./data/${command}`)
