@@ -55,7 +55,7 @@ export const useCheckIn = async (id: string) => {
         })
 
         await user.update({
-            integral: +user.toJSON().integral + random
+            coin: +user.toJSON().coin + random
         })
     } catch (error) {
         logger.error('用户尝试签到失败，数据库报错：', error)

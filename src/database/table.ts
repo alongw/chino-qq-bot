@@ -11,7 +11,8 @@ import type {
     UserTable,
     PermissionTable,
     GroupPermissionTable,
-    GroupTable
+    GroupTable,
+    BillTable
 } from '@/types/db'
 
 export const User = db.define<Model<UserTable, DataBase<UserTable>>>('user', {
@@ -29,7 +30,7 @@ export const User = db.define<Model<UserTable, DataBase<UserTable>>>('user', {
         type: DataTypes.STRING,
         allowNull: true
     },
-    integral: {
+    coin: {
         type: DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 0
@@ -92,6 +93,46 @@ export const GroupPermission = db.define<Model<GroupPermissionTable>>('GroupPerm
     }
 })
 
+export const Bill = db.define<Model<BillTable>>('Bill', {
+    bid: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    uid: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    coin: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    desc: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    before: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    after: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    type: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    time: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
+})
+
 Group.belongsToMany(Permission, {
     through: {
         model: GroupPermission,
@@ -104,6 +145,14 @@ Permission.belongsToMany(Group, {
         model: GroupPermission,
         unique: false
     }
+})
+
+User.hasMany(Bill, {
+    foreignKey: 'uid'
+})
+
+Bill.belongsTo(User, {
+    foreignKey: 'uid'
 })
 
 if (config.sql.sync === true) {

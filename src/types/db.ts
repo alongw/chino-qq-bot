@@ -9,7 +9,7 @@ export interface UserTable {
     id: string
     group: number
     name: string
-    integral: number
+    coin: number
 }
 
 export interface GroupTable {
@@ -30,4 +30,16 @@ export interface GroupPermissionTable {
     pid: number
     specialValue: number
     allow: boolean
+}
+
+export interface BillTable {
+    bid: number
+    uid: string
+    coin: number
+    name: string
+    desc: string
+    before: number
+    after: number
+    type: number
+    time: number
 }

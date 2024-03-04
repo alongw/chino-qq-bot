@@ -55,5 +55,21 @@ export const defaultPermissions: Permission[] = [
         path: 'user.command.motd',
         parent: 102,
         desc: 'motd 命令'
+    },
+    // jrrp 命令
+    {
+        pid: 10206,
+        name: 'jrrp',
+        path: 'user.command.jrrp',
+        parent: 102,
+        desc: 'jrrp 命令'
+    },
+    // bill 命令
+    {
+        pid: 10207,
+        name: 'bill',
+        path: 'user.command.bill',
+        parent: 102,
+        desc: 'bill 命令'
     }
 ]
