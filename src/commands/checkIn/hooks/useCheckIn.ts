@@ -1,6 +1,7 @@
 import { useData } from '@/hooks/useDataFile'
 import dayjs from 'dayjs'
-import { User } from '@/database/table'
+// import { User } from '@/database/table'
+import { useCoin } from '@/hooks/useCoin'
 import { auth } from '@/utils/permission'
 
 import logger from '@/utils/log'
@@ -47,18 +48,17 @@ export const useCheckIn = async (id: string) => {
 
     const random = Math.floor(Math.random() * 50 + 1)
 
-    try {
-        const user = await User.findOne({
-            where: {
-                id
-            }
-        })
+    const { update } = await useCoin(id)
 
-        await user.update({
-            coin: +user.toJSON().coin + random
-        })
-    } catch (error) {
-        logger.error('用户尝试签到失败，数据库报错：', error)
+    const result = await update({
+        number: random,
+        name: '每日签到积分奖励',
+        type: 'add',
+        desc: '使用 /checkIn 命令签到获得积分'
+    })
+
+    if (!result.status) {
+        logger.error('用户尝试签到失败，数据库报错：', result.msg)
         return {
             status: false,
             message: '签到失败！发生内部错误！'
