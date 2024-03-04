@@ -128,7 +128,7 @@ export const Bill = db.define<Model<BillTable>>('Bill', {
         allowNull: false
     },
     time: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         allowNull: false
     }
 })
