@@ -21,6 +21,20 @@ interface AddConfig {
 }
 
 export const useCoin = async (uid: string) => {
+    const get = async () => {
+        const user = await getUser(uid)
+        if (!user) {
+            return {
+                status: false,
+                msg: 'Can not find user'
+            }
+        }
+        return {
+            status: true,
+            coin: user.toJSON().coin
+        }
+    }
+
     const update = async (
         configOrType: 'add' | 'sub' | AddConfig,
         number?: number,
@@ -98,6 +112,7 @@ export const useCoin = async (uid: string) => {
     }
 
     return {
-        update
+        update,
+        get
     }
 }

@@ -29,7 +29,7 @@ export default async (args: string[], event: Event) => {
     const billList = result.map((e) => e.toJSON()).reverse()
     const reply = billList
         .map((e, i) => {
-            return `（${i + 1}）${dayjs(e.time).format('YYYY-MM-DD HH:mm:ss')} | ${
+            return `(${i + 1})${dayjs(e.time).format('YYYY-MM-DD HH:mm:ss')} | ${
                 e.before
             } => ${e.after} | ${e.name}`
         })
