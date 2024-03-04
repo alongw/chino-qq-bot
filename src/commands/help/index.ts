@@ -10,6 +10,7 @@ const defaultHelpMsg = `帮助菜单
 - /help -- 获取帮助菜单
 - /check-in -- 签到
 - /me -- 获取一条关于我的信息
+- /bill [number] -- 获取最近的积分流水（最高30条）
 - /jrrp -- 获取今日人品值
 - /motd <address> [bedrock port] -- 获取服务器状态`
 
