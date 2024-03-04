@@ -1,6 +1,5 @@
 import { useData } from '@/hooks/useDataFile'
 import dayjs from 'dayjs'
-// import { User } from '@/database/table'
 import { useCoin } from '@/hooks/useCoin'
 import { auth } from '@/utils/permission'
 
@@ -54,7 +53,7 @@ export const useCheckIn = async (id: string) => {
         number: random,
         name: '每日签到积分奖励',
         type: 'add',
-        desc: '使用 /checkIn 命令签到获得积分'
+        desc: '使用 /check-in 命令签到获得积分'
     })
 
     if (!result.status) {

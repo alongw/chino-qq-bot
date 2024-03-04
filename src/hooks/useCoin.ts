@@ -49,6 +49,13 @@ export const useCoin = async (uid: string) => {
                     msg: 'Can not find user'
                 }
             }
+            // 判断积分是否足够
+            if (configOrType === 'sub' && user.toJSON().coin < number) {
+                return {
+                    status: false,
+                    msg: 'Insufficient user coin'
+                }
+            }
             // 写入账单
             Bill.create({
                 uid,
