@@ -20,13 +20,11 @@ jobs:
 
             - name: build
               run: |
-                  cd ./service
                   yarn
                   yarn build
-                  cd ..
 
             - name: upload
               uses: actions/upload-artifact@v3
               with:
                   name: service
-                  path: ./service/dist
+                  path: ./dist
