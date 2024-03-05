@@ -12,7 +12,9 @@ const defaultHelpMsg = `帮助菜单
 - /me -- 获取一条关于我的信息
 - /bill [number] -- 获取最近的积分流水（最高30条）
 - /jrrp -- 获取今日人品值
-- /motd <address> [bedrock port] -- 获取服务器状态`
+- /motd <address> [bedrock port] -- 获取服务器状态
+
+机器人官方文档：https://docs.liyxi.com/qq-bot/`
 
 if (!getFile('help.txt')) {
     writeFile('help.txt', defaultHelpMsg)
