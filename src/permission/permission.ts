@@ -7,6 +7,8 @@ export interface Permission {
     desc?: string
 }
 
+export type PermissionNode = (typeof defaultPermissions)[number]['path']
+
 // {
 //     pid: 4,  // 权限ID
 //     name: 'avatar',  // 权限名称
@@ -15,7 +17,8 @@ export interface Permission {
 //     allow?: false  // 权限默认值
 // }
 
-export const defaultPermissions: Permission[] = [
+// export const defaultPermissions: Permission[] = [
+export const defaultPermissions = [
     // 普通用户相关权限
     {
         pid: 10,
@@ -72,4 +75,4 @@ export const defaultPermissions: Permission[] = [
         parent: 102,
         desc: 'bill 命令'
     }
-]
+] as const

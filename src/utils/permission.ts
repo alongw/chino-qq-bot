@@ -4,7 +4,11 @@ import logger from './log'
 
 import dayjs from 'dayjs'
 
-import { defaultPermissions } from '@/permission/permission'
+import {
+    defaultPermissions,
+    type PermissionNode,
+    type Permission as PermissionType
+} from '@/permission/permission'
 
 enum StatusCode {
     Forbidden = 403,
@@ -113,7 +117,9 @@ const hasPermission = async (
     // 如果没有查到权限，匹配默认权限
 
     for (const e of pidList) {
-        const resolve = defaultPermissions.find((element) => element.pid === e)
+        const resolve = defaultPermissions.find(
+            (element) => element.pid === e
+        ) as PermissionType
         if (resolve.allow === true) return { result: true, msg: '默认放行', id: e }
         if (resolve.allow === false) return { result: false, msg: '默认拦截', id: e }
     }
@@ -240,7 +246,11 @@ export const usePermission = async (uuid: string) => {
     }
 }
 
-export const auth = async (permissionNode: string, uuid: string): Promise<boolean> => {
+// export const auth = async (permissionNode: string, uuid: string): Promise<boolean> => {
+export const auth = async (
+    permissionNode: PermissionNode,
+    uuid: string
+): Promise<boolean> => {
     // 检查缓存
     if (permissionCache.has(`${uuid}-${permissionNode}`)) {
         const cache = permissionCache.get(`${uuid}-${permissionNode}`)
@@ -269,7 +279,7 @@ export const auth = async (permissionNode: string, uuid: string): Promise<boolea
     // 检查权限
 
     const group = await getUserGroupByUid(uuid)
-    const result = await checkPermission(permissionNode, group)
+    const result = await checkPermission(permissionNode.toString(), group)
     permissionCache.set(`${uuid}-${permissionNode}`, {
         allow: result.result,
         group,
