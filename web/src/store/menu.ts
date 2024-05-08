@@ -10,6 +10,7 @@ interface Menu {
     selected_icon?: string
     disabled?: string
     loading?: string
+    action?: Function
 }
 
 export const useMenuStore = defineStore('menu', () => {

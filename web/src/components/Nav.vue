@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useMenuStore } from '@/store/menu'
+import { emit } from '@/event'
 
 defineOptions({
     name: 'NavComponent'
@@ -18,6 +19,9 @@ const menuStore = useMenuStore()
                     :key="item.key"
                     :value="item.key"
                     :icon="item.icon"
+                    @click="
+                        item.action ? item.action(item.key) : emit('MENU:CLICK', item.key)
+                    "
                 >
                     {{ item.lable }}
                 </mdui-segmented-button>
