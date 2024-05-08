@@ -18,13 +18,15 @@ jobs:
               with:
                   node-version: '20'
 
-            - name: build
+            - name: build service
               run: |
+                  cd ./service
                   yarn
                   yarn build
+                  cd ..
 
-            - name: upload
+            - name: upload service
               uses: actions/upload-artifact@v3
               with:
                   name: service
-                  path: ./dist
+                  path: ./service/dist
