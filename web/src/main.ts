@@ -8,6 +8,7 @@ import router from './router'
 
 import 'mdui/mdui.css'
 import 'mdui'
+import '@mdui/icons/search.js'
 
 const app = createApp(App)
 
