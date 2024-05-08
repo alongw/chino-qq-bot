@@ -8,4 +8,5 @@ defineOptions({
 
 <template>
     <NavConponent></NavConponent>
+    <router-view />
 </template>
