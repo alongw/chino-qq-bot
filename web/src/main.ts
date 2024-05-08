@@ -1,3 +1,5 @@
+import '@/assets/style/base.less'
+
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
