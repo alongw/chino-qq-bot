@@ -16,16 +16,16 @@ interface Menu {
 export const useMenuStore = defineStore('menu', () => {
     const menuList = ref<Menu[]>([
         {
-            lable: '绑定',
-            key: 'bind',
-            show: false,
-            icon: 'link'
-        },
-        {
             lable: '登录',
             key: 'login',
             show: true,
             icon: 'login'
+        },
+        {
+            lable: '绑定',
+            key: 'bind',
+            show: true,
+            icon: 'link'
         },
         {
             lable: '账号',
