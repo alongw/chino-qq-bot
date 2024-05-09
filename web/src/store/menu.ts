@@ -22,6 +22,12 @@ export const useMenuStore = defineStore('menu', () => {
             icon: 'link'
         },
         {
+            lable: '登录',
+            key: 'login',
+            show: true,
+            icon: 'login'
+        },
+        {
             lable: '账号',
             key: 'account',
             show: true,
