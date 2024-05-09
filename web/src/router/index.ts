@@ -19,6 +19,11 @@ const router = createRouter({
             path: '/bind',
             name: 'Bind',
             component: () => import('@/pages/Bind/Bind.vue')
+        },
+        {
+            path: '/account',
+            name: 'Account',
+            component: () => import('@/pages/Account/Account.vue')
         }
     ]
 })
