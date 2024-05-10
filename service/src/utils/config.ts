@@ -26,7 +26,8 @@ const defaultConfig = {
     },
     express: {
         listen_port: 11033,
-        base_url: '/api'
+        base_url: '/api',
+        jwt_secret: 'dea3cdbe10c327ec87c6058f8b48cc7b'
     },
     nya_account: {
         app_id: '114514',

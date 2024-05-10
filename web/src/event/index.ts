@@ -1,4 +1,4 @@
-const eventList = ['MENU:CLICK'] as const
+const eventList = ['MENU:CLICK', 'API:UNAUTHORIZED', 'API:UNKNOW'] as const
 
 export type EventList = (typeof eventList)[number]
 
