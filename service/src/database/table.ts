@@ -34,6 +34,9 @@ export const User = db.define<Model<UserTable, DataBase<UserTable>>>('user', {
         type: DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 0
+    },
+    nid: {
+        type: DataTypes.STRING
     }
 })
 

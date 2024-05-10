@@ -10,6 +10,7 @@ export interface UserTable {
     group: number
     name: string
     coin: number
+    nid: string | undefined
 }
 
 export interface GroupTable {

@@ -23,6 +23,15 @@ const defaultConfig = {
         sandbox: false,
         max_retry: 3,
         log_level: 'INFO' as LogLevel
+    },
+    express: {
+        listen_port: 11033,
+        base_url: '/api'
+    },
+    nya_account: {
+        app_id: '114514',
+        app_secret: '1919810',
+        redirect_uri: 'http://localhost:5173/login'
     }
 }
 
