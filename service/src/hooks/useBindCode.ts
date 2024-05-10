@@ -36,11 +36,11 @@ export const useBindCode = () => {
         return code
     }
 
-    const verifyCode = (uid: string, code: string): boolean => {
+    const verifyCode = (uid: string, code: string) => {
         clearCode()
         if (_code.has(uid) && _code.get(uid).code === code) {
             _code.delete(uid)
-            return true
+            return _code.get(uid).code
         }
         return false
     }
