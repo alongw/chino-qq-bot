@@ -1,7 +1,7 @@
 import '@/assets/style/base.less'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import piniaPluginPersist from 'pinia-plugin-persist'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 import App from './App.vue'
 import router from './router'
@@ -13,7 +13,7 @@ import 'mdui'
 const app = createApp(App)
 
 const store = createPinia()
-store.use(piniaPluginPersist)
+store.use(piniaPluginPersistedstate)
 
 app.use(store)
 app.use(router)

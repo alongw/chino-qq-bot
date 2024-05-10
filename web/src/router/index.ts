@@ -37,4 +37,8 @@ on('MENU:CLICK', (path: string) => {
     router.push(`/${path}`)
 })
 
+on('USER:LOGIN', () => {
+    router.push(`/`)
+})
+
 export default router

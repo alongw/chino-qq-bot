@@ -10,7 +10,7 @@ export const getState = async () => {
 }
 
 // login
-export const login = async (data: { code: string }) => {
+export const login = async (data: { code: string; state: string }) => {
     return await axios.post<
         Response<{
             token: string
