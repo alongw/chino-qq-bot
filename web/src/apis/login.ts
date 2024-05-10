@@ -6,7 +6,7 @@ export const getState = async () => {
         Response<{
             state: string
         }>
-    >('/login/')
+    >('/login')
 }
 
 // login
