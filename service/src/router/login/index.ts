@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
 
 // login
 router.post('/', async (req, res) => {
-    if (!req.body?.code) {
+    if (!req.body?.code || !req.body?.state) {
         return res.send({
             status: 400,
             msg: '参数错误'
