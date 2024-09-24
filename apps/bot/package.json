@@ -1,0 +1,7 @@
+{
+    "name": "@chino-qq-bot/bot",
+    "main": "./src/app.ts",
+    "scripts": {
+        "dev": "nodemon --exec tsx --no-warnings --experimental-specifier-resolution=node ./src/app.ts"
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "name": "chino-qq-bot",
+    "version": "1.0.0",
+    "description": "chino-qq-bot",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/alongw/chino-qq-bot.git"
+    },
+    "author": {
+        "name": "Neko Along",
+        "email": "neko@awwa.cc"
+    },
+    "license": "AGPL-3.0",
+    "type": "module",
+    "scripts": {
+        "lint": "eslint . --config ./eslint.config.mjs",
+        "format": "prettier --config .prettierrc --write ."
+    }
+}
